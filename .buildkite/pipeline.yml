@@ -1,0 +1,24 @@
+steps:
+  - name: ':docker:'
+    plugins:
+      'docker-compose#v3.0.0':
+        build: usync-test
+        image-repository: 027047743804.dkr.ecr.us-east-2.amazonaws.com/uber
+    agents:
+      queue: builders
+  - wait
+  - name: ':eslint:'
+    command: yarn lint
+    plugins:
+      'docker-compose#v3.0.0':
+        run: usync-test
+    agents:
+      queue: workers
+  - name: ':jest:'
+    # TODO: setup repo in codecov and change command to 'yarn test+cover'
+    command: yarn test
+    plugins:
+      'docker-compose#v3.0.0':
+        run: usync-test
+    agents:
+      queue: workers
