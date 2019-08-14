@@ -4,9 +4,10 @@
 
 > Sync subdirectories of a monorepo with external repos
 
-## Setup
 
-### In your monorepo
+## Setup your monorepo
+
+Configuration for synced repos exists as a json file in the root of your monorepo; this allows your configuration to be versioned along with your code.
 
 **.usyncrc.json**
 
@@ -23,65 +24,44 @@
 }
 ```
 
-### On your server
 
-#### Install
+## Setup your server
+
+### Install
 
 ```sh
 yarn add usyncit
 ```
 
-#### Use
 
-The example below is using fictitious utils for handling webhooks and dealing with pull requests to illustrate the workflow. You'll need to roll your own handling of those things.
+### Provide environment vars
 
-uSync is meant to be a generic tool to import and subsequently land changes made across synced repos. This allows you to implement the developer experience however you want, and just let uSync handle git.
+`GH_TOKEN`
+
+Used in the remote url when cloning repos (see docs on [customizing git](DOCS.md#gitconfigureopts)). Must be from an account that has write access to repos in your org.
+
+
+### Use
 
 ```js
 const {USync} = require('usyncit');
+
+// provide parent monorepo name so it knows where to look
+// for config and where to import into
 const usync = new USync('myorg/monorepo');
-const {closePR, createPR, handleSomeWebhook} = require('./my/org/utils.js');
 
-handleSomeWebhook('import', async prInfo => {
-  const monorepoBranchName = `imports/${prInfo.branch}`;
-
-  await usync.import({
-    // e.g. my-open-source-org/some-repo
-    baseRepoName: prInfo.repoName,
-    // only required if being imported from forked repo
-    // headRepoName: '',
-    headBranch: prInfo.branch,
-    message: prInfo.title,
-    newBranch: monorepoBranchName,
-  });
-
-  // create new PR in monorepo for imported branch
-  await createPR('myorg/monorepo', monorepoBranchName, prInfo.title);
-  // close imported PR
-  await closePR(prInfo.id);
+yourImportWebhookHandler(async () => {
+  await usync.import(...);
 });
 
-handleSomeWebhook('land', async prInfo => {
-  const landedRepos = await usync.land({
-    baseRepoName: 'myorg/monorepo',
-    commitMessages: {
-      // default message used if no explicit message provided
-      generic: 'Make lots of changes across monorepo',
-      // custom message provided for this repo
-      'my-open-source-org/some-repo': 'Make changes to some-repo',
-    },
-    // only required as a backup in case the configured auth
-    // token is unable to push to master
-    // fallbackBranch: '',
-    headBranch: prInfo.branch,
-    // only required if being imported from forked repo
-    // headRepoName: '',
-  });
-
-  // sha of commit landed in master
-  // landedRepos['myorg/monorepo'].sha
-
-  // close landed PR
-  await closePR(prInfo.id);
+yourLandWebhookHandler(async () => {
+  await usync.land(...);
 });
 ```
+
+See [DOCS.md](DOCS.md) for full usage info.
+
+
+## License
+
+[MIT](LICENSE)
