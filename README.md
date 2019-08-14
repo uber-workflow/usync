@@ -12,7 +12,7 @@
 
 ```js
 {
-  "$schema": "https://github.com/uber-workflow/usync/blob/v0.0.1-0/schema/.usyncrc.json",
+  "$schema": "https://github.com/uber-workflow/usync/blob/v0.0.0/schema/.usyncrc.json",
   "mapping": {
     // setup directory mappings per external repo
     "my-open-source-org/some-repo": {
