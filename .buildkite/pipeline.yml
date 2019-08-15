@@ -15,7 +15,7 @@ steps:
     agents:
       queue: workers
   - name: ':jest:'
-    command: 'yarn test+cover'
+    command: yarn test-ci
     plugins:
       'docker-compose#v3.0.0':
         run: usync-test
