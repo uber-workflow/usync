@@ -10,7 +10,7 @@
     "lib"
   ],
   "scripts": {
-    "codecov": "sh ./.buildkite/codecov.sh",
+    "codecov": ".buildkite/codecov",
     "lint": "eslint .",
     "test": "jest",
     "test+cover": "jest --coverage && yarn codecov"
