@@ -10,10 +10,9 @@
     "lib"
   ],
   "scripts": {
-    "codecov": "bash <(curl -s https://codecov.io/bash) -f coverage/coverage-final.json -n node",
     "lint": "eslint .",
     "test": "jest",
-    "test+cover": "jest --coverage && yarn codecov"
+    "test-ci": "jest --coverage && .buildkite/codecov"
   },
   "jest": {
     "coveragePathIgnorePatterns": [

@@ -2,3 +2,7 @@ version: '3'
 services:
   usync-test:
     build: .
+    environment:
+      - BUILDKITE
+      - CODECOV_TOKEN
+      - CI=true
