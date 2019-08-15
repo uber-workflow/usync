@@ -3,4 +3,6 @@ services:
   usync-test:
     build: .
     environment:
+      - BUILDKITE
       - CODECOV_TOKEN
+      - CI=true
