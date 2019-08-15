@@ -1,6 +1,7 @@
 # uSync
 
 [![Build status](https://badge.buildkite.com/b261e65e2871a2025986979ef6c8ef0cccd67f7972b3371254.svg?branch=master)](https://buildkite.com/uberopensource/usync)
+[![codecov](https://codecov.io/gh/uber-workflow/usync/branch/master/graph/badge.svg)](https://codecov.io/gh/uber-workflow/usync)
 
 > Sync subdirectories of a monorepo with external repos
 
