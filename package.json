@@ -10,7 +10,7 @@
     "lib"
   ],
   "scripts": {
-    "codecov": "bash <(curl -s https://codecov.io/bash) -f coverage/coverage-final.json -n node",
+    "codecov": "sh ./.buildkite/codecov.sh",
     "lint": "eslint .",
     "test": "jest",
     "test+cover": "jest --coverage && yarn codecov"
