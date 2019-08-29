@@ -14,7 +14,7 @@ Configuration for synced repos exists as a json file in the root of your monorep
 
 ```js
 {
-  "$schema": "https://raw.githubusercontent.com/uber-workflow/usync/v0.0.1-1/schema/.usyncrc.json",
+  "$schema": "https://raw.githubusercontent.com/uber-workflow/usync/v0.0.1/schema/.usyncrc.json",
   "mapping": {
     // setup directory mappings per external repo
     "my-open-source-org/some-repo": {
