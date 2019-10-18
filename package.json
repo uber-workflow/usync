@@ -5,6 +5,9 @@
   "author": "Chris Deacy <deacy@uber.com>",
   "license": "MIT",
   "main": "index.js",
+  "engines": {
+    "node": ">=8.5.0"
+  },
   "files": [
     "index.js",
     "lib"
@@ -36,5 +39,9 @@
     "globby": "^10.0.1",
     "jest": "^24.8.0",
     "prettier": "^1.18.2"
+  },
+  "volta": {
+    "node": "10.16.3",
+    "yarn": "1.19.1"
   }
 }
