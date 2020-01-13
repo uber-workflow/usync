@@ -1,6 +1,6 @@
 {
   "name": "usyncit",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Sync subdirectories of a monorepo with external repos",
   "author": "Chris Deacy <deacy@uber.com>",
   "license": "MIT",
